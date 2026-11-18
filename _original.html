@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Help They Need Foundation – Support for people facing hard times</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F8F7;--sf:#fff;--ink:#0E2F2E;--mu:#496260;--ln:#D3E1DE;--teal:#1F6F6B;--td:#144F4C;--mist:#DCEBE8;--deep:#0E2F2E;--sun:#F0A92E;--sk:#3A2600;--ot:#fff;--head:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--body:'Figtree','Segoe UI',system-ui,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1B1B;--sf:#132A29;--ink:#EAF4F2;--mu:#A5BDBA;--ln:#25403E;--teal:#5FC2BB;--td:#8DD8D2;--mist:#173533;--deep:#071212;--ot:#08201F;--sk:#2A1B00;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B1B1B;--sf:#132A29;--ink:#EAF4F2;--mu:#A5BDBA;--ln:#25403E;--teal:#5FC2BB;--td:#8DD8D2;--mist:#173533;--deep:#071212;--ot:#08201F;--sk:#2A1B00;color-scheme:dark}
+html{scroll-padding-top:calc(5rem + env(safe-area-inset-top,0px));scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+h1,h2,h3{font-family:var(--head);line-height:1.1;margin:0;letter-spacing:-.02em}
+p{margin:0}a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:4px}
+.w{max-width:1160px;margin:0 auto;padding:0 1.5rem}
+.btn{display:inline-block;font:600 1rem var(--body);padding:.85rem 1.6rem;border-radius:999px;border:2px solid transparent;cursor:pointer;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.b1{background:var(--sun);color:var(--sk)}.b2{border-color:var(--teal);color:var(--td);background:transparent}.b3{background:var(--teal);color:var(--ot)}
+svg.i{width:1.6rem;height:1.6rem;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.top{background:var(--deep);color:#EAF4F2;font-size:.92rem;padding:.55rem 0;text-align:center}
+.top a{color:var(--sun);font-weight:600}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--ln)}
+.hb{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:4.5rem}
+.logo{font:800 1.3rem var(--head);text-decoration:none;display:flex;align-items:center;gap:.6rem}
+.logo i{width:2rem;height:2rem;border-radius:50% 50% 50% 8px;background:var(--teal);position:relative;display:inline-block}
+.logo i::after{content:"";position:absolute;inset:.55rem;background:var(--sun);border-radius:50%}
+nav{display:flex;gap:1.6rem;align-items:center}
+nav a:not(.btn){text-decoration:none;font-weight:500;color:var(--mu)}nav a:not(.btn):hover{color:var(--ink)}
+.mt{display:none;all:unset;cursor:pointer;padding:.5rem;border:2px solid var(--ln);border-radius:10px}
+@media(max-width:900px){.mt{display:block}nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);flex-direction:column;align-items:flex-start;padding:1rem 1.5rem 1.5rem;border-bottom:1px solid var(--ln)}nav.open{display:flex}}
+
+.hero{padding:4rem 0 4.5rem}
+.hg{display:grid;grid-template-columns:1.15fr 1fr;gap:3rem;align-items:center}
+.hero h1{font-size:clamp(2.4rem,5.4vw,4.4rem);font-weight:800}
+.hero .ld{font-size:1.2rem;color:var(--mu);margin:1.4rem 0 2rem;max-width:50ch}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem}
+.trust{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:2rem;color:var(--mu);font-size:.95rem}
+.trust span::before{content:"";display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:var(--teal);margin-right:.5rem}
+.arches{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.ar{border-radius:999px 999px 22px 22px;padding:2.6rem 1.2rem 1.4rem;text-decoration:none;display:flex;flex-direction:column;gap:.5rem;align-items:center;text-align:center;min-height:15rem;justify-content:flex-end;transition:transform .2s}
+.ar:hover{transform:translateY(-4px)}
+.ar svg.i{width:2.4rem;height:2.4rem}.ar strong{font:700 1.2rem var(--head)}.ar span{font-size:.92rem;opacity:.85;line-height:1.4}
+.a1{background:var(--teal);color:var(--ot)}.a2{background:var(--sun);color:var(--sk);margin-top:2rem}.a3{background:var(--mist);color:var(--td);margin-top:-2rem}.a4{background:var(--deep);color:#EAF4F2}
+@media(max-width:900px){.hg{grid-template-columns:1fr}.a2{margin-top:1rem}.a3{margin-top:0}}
+
+.strip{background:var(--sf);border-block:1px solid var(--ln);padding:2.2rem 0}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem}
+.sg strong{display:block;font:800 2.4rem var(--head);color:var(--teal);letter-spacing:-.03em}.sg span{color:var(--mu)}
+.note{font-size:.85rem;color:var(--mu);margin-top:1.2rem}
+
+section{padding:5rem 0}
+.sh{max-width:660px;margin-bottom:2.8rem}.sh h2{font-size:clamp(1.9rem,4vw,2.9rem)}.sh p{color:var(--mu);margin-top:1rem}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.about>p{color:var(--mu);margin-bottom:1rem}
+.vals{display:grid;gap:1.2rem}
+.vals div{padding-left:1.2rem;border-left:4px solid var(--sun)}.vals h3{font-size:1.2rem;margin-bottom:.2rem}.vals p{color:var(--mu)}
+@media(max-width:820px){.about{grid-template-columns:1fr}}
+
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.4rem}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:22px;padding:1.8rem;display:flex;flex-direction:column;gap:.9rem}
+.ic{width:3.2rem;height:3.2rem;border-radius:14px;background:var(--mist);color:var(--td);display:grid;place-items:center}
+.card h3{font-size:1.4rem}.card p{color:var(--mu)}
+.card ul{margin:0;padding-left:1.1rem;color:var(--mu);flex:1}
+.card a{font-weight:600;color:var(--td)}
+
+.dark{background:var(--deep);color:#EAF4F2}.dark .sh p{color:#A5BDBA}
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;counter-reset:s;list-style:none;padding:0;margin:0}
+.st li{counter-increment:s;border-top:3px solid var(--sun);padding-top:1.2rem}
+.st li::before{content:counter(s);display:grid;place-items:center;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--sun);color:var(--sk);font:800 1rem var(--head);margin-bottom:.8rem}
+.st h3{font-size:1.25rem;margin-bottom:.4rem}.st p{color:#A5BDBA;font-size:1rem}
+
+.tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem}
+blockquote{margin:0;background:var(--sf);border:1px solid var(--ln);border-radius:22px;padding:1.8rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.4rem}
+blockquote p{font:500 1.15rem/1.5 var(--head)}
+blockquote footer{display:flex;gap:.8rem;align-items:center;color:var(--mu);font-size:.95rem}
+.av{width:2.8rem;height:2.8rem;border-radius:50%;background:var(--teal);color:var(--ot);display:grid;place-items:center;font:700 1.1rem var(--head)}
+
+.give{background:var(--mist)}
+.gv{display:grid;grid-template-columns:1.2fr 1fr;gap:1.6rem}
+.box{background:var(--sf);border-radius:24px;padding:2rem}
+.box h3{font-size:1.6rem;margin-bottom:1rem}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border-radius:999px;padding:.3rem;margin-bottom:1.2rem}
+.seg button,.amt{all:unset;cursor:pointer;text-align:center}
+.seg button{padding:.65rem;border-radius:999px;font-weight:600}
+.seg button[aria-pressed="true"]{background:var(--teal);color:var(--ot)}
+.am{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:.8rem}
+.amt{padding:.85rem 0;border:2px solid var(--ln);border-radius:14px;font:700 1.15rem var(--head)}
+.amt[aria-pressed="true"]{border-color:var(--teal);background:var(--mist);color:var(--td)}
+.seg button:focus-visible,.amt:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.gives{min-height:3.4em;font-weight:500;margin:.6rem 0 1.2rem}
+.thanks{display:none;margin-top:1rem;background:var(--mist);border-left:5px solid var(--teal);padding:1rem 1.2rem;border-radius:12px}.thanks.show{display:block}
+.bars{display:grid;gap:1rem}.bars label{display:flex;justify-content:space-between;font-weight:600;margin-bottom:.3rem}
+.bar{height:.7rem;background:var(--bg);border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--teal);border-radius:99px}
+@media(max-width:820px){.gv{grid-template-columns:1fr}}
+
+.vol{background:var(--teal);color:var(--ot);border-radius:28px;padding:3rem;display:flex;flex-wrap:wrap;gap:1.5rem 3rem;justify-content:space-between;align-items:center}
+.vol h2{font-size:clamp(1.7rem,3.4vw,2.5rem);max-width:20ch}.vol p{max-width:46ch;margin-top:.8rem;opacity:.9}
+
+.faq{max-width:780px}
+details{border-bottom:1px solid var(--ln);padding:1.1rem 0}
+summary{cursor:pointer;font:700 1.15rem var(--head);list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.5rem;line-height:1;color:var(--teal)}
+details[open] summary::after{content:"–"}
+details p{color:var(--mu);margin-top:.7rem}
+
+.gh{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:start}
+.gh h2{font-size:clamp(1.9rem,4vw,2.9rem)}.gh .sd p{color:var(--mu);margin-top:1rem}
+.ct{list-style:none;padding:0;margin:1.6rem 0 0;display:grid;gap:.8rem}.ct li{display:flex;gap:.8rem;align-items:center}
+form{background:var(--sf);border:1px solid var(--ln);border-radius:24px;padding:2rem;display:grid;gap:1.1rem}
+label.f{display:grid;gap:.4rem;font-weight:600}
+input,select,textarea{font:400 1rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--ln);border-radius:12px;padding:.75rem .9rem;width:100%}
+textarea{min-height:110px;resize:vertical}
+@media(max-width:820px){.gh{grid-template-columns:1fr}}
+
+.nl{background:var(--deep);color:#EAF4F2;padding:2.5rem 0}
+.nr{display:flex;flex-wrap:wrap;gap:1.2rem 3rem;justify-content:space-between;align-items:center}
+.nr h3{font-size:1.5rem}.nr form{background:none;border:0;padding:0;display:flex;gap:.6rem;flex-wrap:wrap}.nr input{width:auto;min-width:240px;flex:1}
+footer.ft{background:var(--deep);color:#A5BDBA;padding:2.5rem 0 2rem;border-top:1px solid #25403E}
+.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2rem}
+.fg h3{font-size:1.05rem;color:#EAF4F2;margin-bottom:.8rem}.fg ul{list-style:none;padding:0;margin:0;display:grid;gap:.5rem}
+.fg a{text-decoration:none}.fg a:hover{color:#fff}.fg .logo{color:#EAF4F2}.fg p{margin-top:.8rem;max-width:36ch}
+.lg{border-top:1px solid #25403E;margin-top:2rem;padding-top:1.2rem;font-size:.9rem}
+@media(max-width:820px){.fg{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.4-9.5 9-9.5 9z"/></symbol>
+<symbol id="book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19a2 2 0 0 1 2-2h13"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10H3zM10 21v-6h4v6"/></symbol>
+<symbol id="people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c2.9.2 5 2.5 5 5.8"/></symbol>
+<symbol id="phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+<symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+<symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+</svg>
+
+<div class="top">Need support right now? <a href="#get-help">Contact our team</a> and we will reply within two working days.</div>
+<header>
+  <div class="w hb">
+    <a class="logo" href="#top"><i aria-hidden="true"></i>Help They Need</a>
+    <button class="mt" id="mt" aria-expanded="false" aria-controls="nav" aria-label="Menu"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav id="nav" aria-label="Main">
+      <a href="#about">About</a><a href="#programs">Programs</a><a href="#how">How we help</a><a href="#stories">Stories</a><a href="#faq">FAQ</a>
+      <a class="btn b2" href="#get-help">Get help</a><a class="btn b1" href="#give">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero"><div class="w hg">
+  <div>
+    <h1>Dignity, safety and opportunity for people facing hard times.</h1>
+    <p class="ld">Help They Need is a foundation supporting older people, students, refugees and families who are struggling. We listen, we act, and we stay until people are back on their feet.</p>
+    <div class="cta"><a class="btn b1" href="#get-help">Get help</a><a class="btn b2" href="#give">Support our work</a></div>
+    <div class="trust"><span>Registered foundation</span><span>Annual public report</span><span>Local volunteers</span></div>
+  </div>
+  <div class="arches">
+    <a class="ar a1" href="#programs"><svg class="i"><use href="#heart"/></svg><strong>Older people</strong><span>Care and company</span></a>
+    <a class="ar a2" href="#programs"><svg class="i"><use href="#book"/></svg><strong>Students</strong><span>Learning for all</span></a>
+    <a class="ar a3" href="#programs"><svg class="i"><use href="#home"/></svg><strong>Refugees</strong><span>A safe start</span></a>
+    <a class="ar a4" href="#programs"><svg class="i"><use href="#people"/></svg><strong>Families</strong><span>Steady support</span></a>
+  </div>
+</div></div>
+
+<div class="strip"><div class="w">
+  <div class="sg">
+    <div><strong data-n="12400">0</strong><span>meals served to older neighbors</span></div>
+    <div><strong data-n="3200">0</strong><span>students kept in school</span></div>
+    <div><strong data-n="860">0</strong><span>refugee families resettled</span></div>
+    <div><strong data-n="1500">0</strong><span>active volunteers</span></div>
+  </div>
+  <p class="note">Sample figures for design purposes. Replace with your real results.</p>
+</div></div>
+
+<section id="about"><div class="w">
+  <div class="sh"><h2>We exist so no one is left behind</h2></div>
+  <div class="about">
+    <div><p>Hardship can arrive suddenly: an illness, a lost job, a journey away from home. Help They Need was founded to give people practical support quickly, and to treat everyone with respect while we do it.</p><p>We work with local volunteers, schools, clinics and community leaders, so help reaches people where they live.</p></div>
+    <div class="vals">
+      <div><h3>Dignity first</h3><p>People choose the help that suits them. We never decide for them.</p></div>
+      <div><h3>Open books</h3><p>We publish where every donation goes, every year.</p></div>
+      <div><h3>Lasting change</h3><p>We aim for independence, not dependence, with follow-up after every case.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="programs" style="background:var(--sf);border-block:1px solid var(--ln)"><div class="w">
+  <div class="sh"><h2>Our programs</h2><p>Four programs, each shaped by what people tell us they need.</p></div>
+  <div class="pg">
+    <article class="card"><div class="ic"><svg class="i"><use href="#heart"/></svg></div><h3>Older people</h3><p>Support for older neighbors who live alone or struggle day to day.</p><ul><li>Hot meals and weekly visits</li><li>Rides to clinics</li><li>Help with pensions and paperwork</li></ul><a href="#get-help">Request support</a></article>
+    <article class="card"><div class="ic"><svg class="i"><use href="#book"/></svg></div><h3>Students</h3><p>Help so talented students can stay in education.</p><ul><li>Fees, books and uniforms</li><li>Mentors and study spaces</li><li>Scholarship guidance</li></ul><a href="#get-help">Request support</a></article>
+    <article class="card"><div class="ic"><svg class="i"><use href="#home"/></svg></div><h3>Refugees</h3><p>A safe start for families who have fled conflict or hardship.</p><ul><li>Shelter and food parcels</li><li>Legal and medical referrals</li><li>Language and job training</li></ul><a href="#get-help">Request support</a></article>
+    <article class="card"><div class="ic"><svg class="i"><use href="#people"/></svg></div><h3>Families in need</h3><p>Short-term help when a crisis hits a household.</p><ul><li>Rent, utilities and groceries</li><li>Child and school support</li><li>A caseworker who stays in touch</li></ul><a href="#get-help">Request support</a></article>
+  </div>
+</div></section>
+
+<section class="dark" id="how"><div class="w">
+  <div class="sh"><h2>How we help</h2><p>A simple process, with a real person at every step.</p></div>
+  <ol class="st">
+    <li><h3>Reach out</h3><p>Send a request online or through a local partner. It takes a few minutes.</p></li>
+    <li><h3>We listen</h3><p>A caseworker contacts you within two working days to understand your situation.</p></li>
+    <li><h3>Get support</h3><p>Together we agree a plan and arrange food, school costs, shelter or referrals.</p></li>
+    <li><h3>Stay connected</h3><p>We follow up until you are stable, and keep the door open afterwards.</p></li>
+  </ol>
+</div></section>
+
+<section id="stories"><div class="w">
+  <div class="sh"><h2>Stories from our community</h2><p>Sample stories shown as placeholders. Replace with real, consented testimonials.</p></div>
+  <div class="tg">
+    <blockquote><p>“The weekly visit is the best part of my week. Someone knows my name and asks how I am.”</p><footer><span class="av">G</span><span>Grace, 74<br>Home visit program</span></footer></blockquote>
+    <blockquote><p>“Paying my exam fees meant I could finish school. Now I am studying nursing.”</p><footer><span class="av">T</span><span>Thoko, 19<br>Student support</span></footer></blockquote>
+    <blockquote><p>“We arrived with nothing. They found us a home, a doctor and a teacher for the children.”</p><footer><span class="av">A</span><span>Amina, mother of three<br>Refugee program</span></footer></blockquote>
+  </div>
+</div></section>
+
+<section class="give" id="give"><div class="w">
+  <div class="sh"><h2>Give today, change a life</h2><p>Every gift goes toward food, education, shelter and care.</p></div>
+  <div class="gv">
+    <div class="box">
+      <h3>Make a donation</h3>
+      <div class="seg" role="group" aria-label="Frequency"><button type="button" id="fo" aria-pressed="false">One time</button><button type="button" id="fm" aria-pressed="true">Monthly</button></div>
+      <div class="am" role="group" aria-label="Amount"></div>
+      <label class="f">Or enter another amount<input id="cu" type="number" min="1" inputmode="numeric" placeholder="Amount in $"></label>
+      <p class="gives" id="gives" aria-live="polite"></p>
+      <button class="btn b1" id="dn" type="button">Donate now</button>
+      <p class="thanks" id="th" role="status"></p>
+    </div>
+    <div class="box">
+      <h3>Where your money goes</h3>
+      <div class="bars">
+        <div><label><span>Direct programs</span><span>85%</span></label><div class="bar"><i style="width:85%"></i></div></div>
+        <div><label><span>Operations</span><span>10%</span></label><div class="bar"><i style="width:10%"></i></div></div>
+        <div><label><span>Fundraising</span><span>5%</span></label><div class="bar"><i style="width:5%"></i></div></div>
+      </div>
+      <p class="note">Sample breakdown. Update with your audited figures.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="w"><div class="vol">
+  <div><h2>Give your time. Join our volunteers.</h2><p>A few hours a week can make a real difference. Visit a neighbor, mentor a student or welcome a family. No special training is needed.</p></div>
+  <a class="btn b1" href="#get-help">Become a volunteer</a>
+</div></div></section>
+
+<section id="faq" style="padding-top:1rem"><div class="w">
+  <div class="sh"><h2>Questions we often hear</h2></div>
+  <div class="faq">
+    <details><summary>Who can ask for help?</summary><p>Anyone facing hardship, including older people, students, refugees and families. You can also ask on behalf of someone else.</p></details>
+    <details><summary>Does it cost anything to get support?</summary><p>No. Our services are free for the people we help.</p></details>
+    <details><summary>Is my information kept private?</summary><p>Yes. We only share details with partners when you agree, and only to arrange your support.</p></details>
+    <details><summary>How is my donation used?</summary><p>Most goes directly to programs. We publish an annual report showing every category of spending.</p></details>
+    <details><summary>Can I volunteer from home?</summary><p>Yes. Phone calls, online tutoring and translation can all be done remotely.</p></details>
+  </div>
+</div></section>
+
+<section class="give" id="get-help"><div class="w gh">
+  <div class="sd"><h2>Need help, or know someone who does?</h2><p>Send us a few details and our team will reply within two working days. You can ask for yourself or for someone else.</p>
+    <ul class="ct"><li><svg class="i"><use href="#phone"/></svg>+000 000 000 000</li><li><svg class="i"><use href="#mail"/></svg>hello@helptheyneed.org</li><li><svg class="i"><use href="#pin"/></svg>Your city, Your country</li></ul></div>
+  <form id="form" novalidate>
+    <label class="f">Your name<input name="name" autocomplete="name" required></label>
+    <label class="f">Phone or email<input name="contact" autocomplete="email" required></label>
+    <label class="f">I am contacting you about
+      <select name="who"><option>An older person</option><option>A student</option><option>A refugee or displaced family</option><option>A family in need</option><option>Volunteering</option><option>Partnership</option></select></label>
+    <label class="f">How can we help?<textarea name="msg"></textarea></label>
+    <button class="btn b3" type="submit">Send request</button>
+    <p class="thanks" id="ok" role="status">Thank you. We have your request and will be in touch within two working days.</p>
+  </form>
+</div></section>
+</main>
+
+<div class="nl"><div class="w nr">
+  <div><h3>Stay in touch</h3><p>Get our yearly report and news of the people your support helps.</p></div>
+  <form id="nf"><input type="email" aria-label="Email address" placeholder="Your email" required><button class="btn b1" type="submit">Subscribe</button></form>
+</div></div>
+
+<footer class="ft"><div class="w">
+  <div class="fg">
+    <div><a class="logo" href="#top"><i aria-hidden="true"></i>Help They Need</a><p>A registered foundation supporting people who need it most, with dignity and respect.</p></div>
+    <div><h3>Our work</h3><ul><li><a href="#programs">Programs</a></li><li><a href="#how">How we help</a></li><li><a href="#stories">Stories</a></li></ul></div>
+    <div><h3>Get involved</h3><ul><li><a href="#give">Donate</a></li><li><a href="#get-help">Volunteer</a></li><li><a href="#get-help">Partner with us</a></li></ul></div>
+    <div><h3>About</h3><ul><li><a href="#about">Our mission</a></li><li><a href="#faq">FAQ</a></li><li><a href="#get-help">Contact</a></li></ul></div>
+  </div>
+  <p class="lg">© 2026 Help They Need Foundation. All rights reserved. Registered charity no. 000000.</p>
+</div></footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const mt=$('#mt'),nav=$('#nav');
+mt.addEventListener('click',()=>{const o=nav.classList.toggle('open');mt.setAttribute('aria-expanded',o)});
+nav.addEventListener('click',e=>{if(e.target.closest('a')){nav.classList.remove('open');mt.setAttribute('aria-expanded',false)}});
+
+let freq='monthly',amt=25;
+const D=[[10,'provides a week of meals for an older neighbor'],[25,'buys school books and supplies for one student'],[50,'gives a refugee family a food and hygiene pack'],[100,'covers a month of rent help for a family in crisis']];
+const am=$('.am'),gv=$('#gives'),cu=$('#cu');
+function draw(){
+  const m=D.find(d=>d[0]===amt);
+  gv.textContent='$'+amt+(freq==='monthly'?' every month ':' ')+(m?m[1]+'.':'helps us respond to urgent needs.');
+  am.querySelectorAll('.amt').forEach((b,i)=>b.setAttribute('aria-pressed',D[i][0]===amt&&!cu.value));
+  $('#fo').setAttribute('aria-pressed',freq==='once');$('#fm').setAttribute('aria-pressed',freq==='monthly');
+}
+D.forEach(d=>{const b=document.createElement('button');b.type='button';b.className='amt';b.textContent='$'+d[0];b.onclick=()=>{amt=d[0];cu.value='';draw()};am.appendChild(b)});
+cu.addEventListener('input',()=>{const v=parseInt(cu.value,10);if(v>0){amt=v;draw();am.querySelectorAll('.amt').forEach(b=>b.setAttribute('aria-pressed',false))}});
+$('#fo').onclick=()=>{freq='once';draw()};$('#fm').onclick=()=>{freq='monthly';draw()};
+$('#dn').onclick=()=>{const t=$('#th');t.textContent='Thank you. You chose $'+amt+(freq==='monthly'?' monthly':' one time')+'. Your payment provider connects here.';t.classList.add('show')};
+draw();
+
+$('#form').addEventListener('submit',e=>{
+  e.preventDefault();const f=e.target;
+  if(!f.name.value.trim()||!f.contact.value.trim()){(f.name.value.trim()?f.contact:f.name).focus();return}
+  $('#ok').classList.add('show');f.reset();
+});
+$('#nf').addEventListener('submit',e=>{e.preventDefault();e.target.innerHTML='<p>Thank you for subscribing.</p>'});
+
+const io=new IntersectionObserver(es=>es.forEach(en=>{
+  if(!en.isIntersecting)return;io.unobserve(en.target);
+  const el=en.target,n=+el.dataset.n;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=n.toLocaleString('en-US')+'+';return}
+  const t0=performance.now();
+  (function s(t){const p=Math.min((t-t0)/1200,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3))).toLocaleString('en-US')+(p<1?'':'+');if(p<1)requestAnimationFrame(s)})(t0);
+}),{threshold:.4});
+document.querySelectorAll('[data-n]').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

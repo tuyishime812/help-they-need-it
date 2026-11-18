@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f4f8f7;
+  --sf: #ffffff;
+  --ink: #0e2f2e;
+  --mu: #496260;
+  --ln: #d3e1de;
+  --teal: #1f6f6b;
+  --td: #144f4c;
+  --mist: #dcebe8;
+  --deep: #0e2f2e;
+  --sun: #f0a92e;
+  --sk: #3a2600;
+  --ot: #ffffff;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1b1b;
+    --sf: #132a29;
+    --ink: #eaf4f2;
+    --mu: #a5bdba;
+    --ln: #25403e;
+    --teal: #5fc2bb;
+    --td: #8dd8d2;
+    --mist: #173533;
+    --deep: #071212;
+    --ot: #08201f;
+    --sk: #2a1b00;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b1b1b;
+  --sf: #132a29;
+  --ink: #eaf4f2;
+  --mu: #a5bdba;
+  --ln: #25403e;
+  --teal: #5fc2bb;
+  --td: #8dd8d2;
+  --mist: #173533;
+  --deep: #071212;
+  --ot: #08201f;
+  --sk: #2a1b00;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f4f8f7;
+  --sf: #ffffff;
+  --ink: #0e2f2e;
+  --mu: #496260;
+  --ln: #d3e1de;
+  --teal: #1f6f6b;
+  --td: #144f4c;
+  --mist: #dcebe8;
+  --deep: #0e2f2e;
+  --sun: #f0a92e;
+  --sk: #3a2600;
+  --ot: #ffffff;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-sf: var(--sf);
+  --color-ink: var(--ink);
+  --color-mu: var(--mu);
+  --color-ln: var(--ln);
+  --color-teal: var(--teal);
+  --color-td: var(--td);
+  --color-mist: var(--mist);
+  --color-deep: var(--deep);
+  --color-sun: var(--sun);
+  --color-sk: var(--sk);
+  --color-ot: var(--ot);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), "Segoe UI", system-ui, sans-serif;
+  line-height: 1.65;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading), "Segoe UI", system-ui, sans-serif;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
