@@ -55,9 +55,9 @@ export function DonateSection() {
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json?.tx_ref || !json?.public_key) throw new Error(json?.error || "Could not prepare payment.");
       const PaychanguCheckout = (window as any).PaychanguCheckout;
-      if (typeof PaychanguCheckout !== "function") throw new Error("PayChangu payment popup could not load. Please check your connection and try again.");
+      if (typeof PaychanguCheckout !== "function") throw new Error("Secure payment window could not load. Please check your connection and try again.");
       const nameParts = (donorName.trim() || "Anonymous Donor").split(/\s+/).filter(Boolean);
-      setMsg("Opening PayChangu secure payment popup...");
+      setMsg("Opening secure payment window...");
       PaychanguCheckout({
         public_key: json.public_key, tx_ref: json.tx_ref, amount, currency,
         callback_url: json.callback_url, return_url: json.return_url,
@@ -75,7 +75,7 @@ export function DonateSection() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-2xl">
           <h2 className="font-heading text-3xl font-extrabold sm:text-4xl lg:text-5xl">Give today, change a life</h2>
-          <p className="mt-4 text-lg text-mu">Every gift goes toward food, education, shelter and care. Donate securely via PayChangu (mobile money/cards).</p>
+          <p className="mt-4 text-lg text-mu">Every gift goes toward food, education, shelter and care. Donate securely online (mobile money/cards).</p>
         </div>
         <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
           <div className="rounded-3xl bg-sf p-6 sm:p-8 shadow-sm border border-ln/50">
@@ -107,8 +107,8 @@ export function DonateSection() {
               <input type="email" value={donorEmail} onChange={(e) => { setDonorEmail(e.target.value); setMsg(''); }} placeholder="you@example.com" required className="w-full rounded-xl border-2 border-ln bg-bg px-4 py-3 font-normal text-ink" />
             </label>
             <p className="mt-3 min-h-[3.4em] font-medium" aria-live="polite">{impact}</p>
-            <button type="button" onClick={onDonate} disabled={busy} className="mt-2 rounded-full bg-sun px-7 py-3 font-semibold text-sk transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60">{busy ? "Opening PayChangu..." : "Donate securely with PayChangu"}</button>
-            <p className="mt-2 text-sm text-mu">Pay with PayChangu inline popup (mobile money/cards) without leaving the site flow.</p>
+            <button type="button" onClick={onDonate} disabled={busy} className="mt-2 rounded-full bg-sun px-7 py-3 font-semibold text-sk transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60">{busy ? "Opening secure payment..." : "Donate securely"}</button>
+            <p className="mt-2 text-sm text-mu">Complete your payment securely (mobile money/cards) without leaving the site flow.</p>
             {msg && <p role="status" className="mt-4 rounded-xl border-l-4 border-teal bg-mist px-4 py-3">{msg}</p>}
           </div>
           <div className="rounded-3xl bg-sf p-6 sm:p-8 shadow-sm border border-ln/50">

@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
-import { Branch, emit, getStore, uid } from "@/lib/store";
+import { Branch, createDonation, emit, listDonations } from "@/lib/store";
 
 const branches: Branch[] = ["Older people", "Students", "Refugees", "Families"];
 
 export async function GET() {
-  const store = getStore();
-  const donations = [...store.donations].sort((a, b) => +new Date(b.createdAt) - +new Date(a.createdAt));
-  return NextResponse.json({ donations });
+  try {
+    const donations = await listDonations(200);
+    return NextResponse.json({ donations });
+  } catch (e: any) {
+    return NextResponse.json({ error: e?.message || "Failed to load donations" }, { status: 500 });
+  }
 }
 
 export async function POST(req: Request) {
@@ -20,12 +23,10 @@ export async function POST(req: Request) {
     if (!Number.isFinite(amount) || amount <= 0 || amount > 1000000) {
       return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
     }
-    const now = new Date().toISOString();
-    const donation = { id: uid("d"), amount, currency, frequency, branch, donorName, createdAt: now, updatedAt: now, paymentStatus: "successful" as const };
-    getStore().donations.push(donation);
+    const donation = await createDonation({ amount, currency, frequency, branch, donorName, paymentStatus: "successful" });
     emit({ type: "donation" });
     return NextResponse.json({ ok: true, donation }, { status: 201 });
-  } catch {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  } catch (e: any) {
+    return NextResponse.json({ error: e?.message || "Invalid request" }, { status: 400 });
   }
 }

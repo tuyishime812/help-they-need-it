@@ -10,7 +10,7 @@ export default function DonatePage() {
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal">Donate</p>
           <h1 className="mt-3 max-w-3xl font-heading text-4xl font-extrabold sm:text-5xl">Support a branch. Track impact in real time.</h1>
-          <p className="mt-5 max-w-2xl text-lg text-mu">Choose Older people, Students, Refugees, or Families and complete your donation securely through PayChangu inline payment.</p>
+          <p className="mt-5 max-w-2xl text-lg text-mu">Choose Older people, Students, Refugees, or Families and complete your donation securely through our inline payment flow.</p>
         </div>
       </section>
       <DonateSection />

@@ -2,12 +2,37 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCounters } from "@/components/site/Counters";
+import { useEffect, useState } from "react";
 import { Newsletter } from "@/components/site/Newsletter";
 import { Icon } from "@/components/site/icons";
 
+type Stats = {
+  totalDonations: number;
+  pendingCount: number;
+  totals: { MWK: number; USD: number };
+  monthlyRecurring: { MWK: number; USD: number };
+  openRequests: number;
+};
+
 export default function HomePage() {
-  useCounters();
+  const [stats, setStats] = useState<Stats | null>(null);
+  const [statsError, setStatsError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/stats", { cache: "no-store" });
+        if (!res.ok) throw new Error("failed");
+        const data = await res.json();
+        if (!cancelled) setStats(data);
+      } catch {
+        if (!cancelled) setStatsError(true);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
   return (
     <>
       <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:py-24">
@@ -28,7 +53,7 @@ export default function HomePage() {
             <div className="mt-8 grid gap-3 text-sm text-mu sm:grid-cols-3 sm:text-base">
               {[
                 ["Transparent reporting", "Clear tracking and accountable use of funds."],
-                ["Secure payments", "Donations via PayChangu with server-side verification."],
+                ["Secure payments", "Online donations with server-side verification and tracking."],
                 ["Local partnerships", "Volunteers and partners embedded in communities."],
               ].map(([t, d]) => (
                 <div key={t} className="rounded-xl border border-ln/70 bg-sf/70 p-3">
@@ -55,24 +80,41 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="font-heading text-2xl font-extrabold sm:text-3xl">Our impact at a glance</h2>
-              <p className="text-mu">Sample figures shown for design — replace with verified results.</p>
+              <h2 className="font-heading text-2xl font-extrabold sm:text-3xl">Live impact & revenue tracking</h2>
+              <p className="text-mu">Real figures from our tracking system (successful donations and current support requests).</p>
             </div>
+            <Link href="/admin" className="text-sm font-semibold text-td underline-offset-2 hover:underline">Open admin dashboard</Link>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              [12400, "meals served", "Nutritious support for older neighbors"],
-              [3200, "students supported", "Education resources and guidance"],
-              [860, "families resettled", "Safe starts for displaced families"],
-              [1500, "active volunteers", "People powering local outreach"],
-            ].map(([n, label, sub]) => (
-              <div key={label as string} className="rounded-2xl border border-ln/60 bg-bg p-5 transition hover:-translate-y-0.5 hover:shadow-sm">
-                <strong data-count={n} className="block font-heading text-4xl font-extrabold text-teal">0</strong>
-                <p className="mt-1 font-semibold text-ink">{label as string}</p>
-                <p className="text-sm text-mu">{sub as string}</p>
+          {statsError ? (
+            <div className="rounded-2xl border border-ln bg-bg p-5 text-mu">Live stats are unavailable right now. Please check back shortly.</div>
+          ) : !stats ? (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[1,2,3,4].map((i) => <div key={i} className="h-28 animate-pulse rounded-2xl border border-ln/60 bg-bg" />)}
+            </div>
+          ) : (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="rounded-2xl border border-ln/60 bg-bg p-5">
+                <p className="text-sm text-mu">Total revenue (MWK)</p>
+                <strong className="mt-1 block font-heading text-3xl font-extrabold text-teal">MWK {stats.totals.MWK.toLocaleString()}</strong>
+                <p className="mt-1 text-sm text-mu">Successful donations tracked</p>
               </div>
-            ))}
-          </div>
+              <div className="rounded-2xl border border-ln/60 bg-bg p-5">
+                <p className="text-sm text-mu">Total revenue (USD)</p>
+                <strong className="mt-1 block font-heading text-3xl font-extrabold text-teal">${stats.totals.USD.toLocaleString()}</strong>
+                <p className="mt-1 text-sm text-mu">Successful donations tracked</p>
+              </div>
+              <div className="rounded-2xl border border-ln/60 bg-bg p-5">
+                <p className="text-sm text-mu">Successful donations</p>
+                <strong className="mt-1 block font-heading text-3xl font-extrabold text-teal">{stats.totalDonations.toLocaleString()}</strong>
+                <p className="mt-1 text-sm text-mu">{stats.pendingCount.toLocaleString()} pending verification</p>
+              </div>
+              <div className="rounded-2xl border border-ln/60 bg-bg p-5">
+                <p className="text-sm text-mu">Open support requests</p>
+                <strong className="mt-1 block font-heading text-3xl font-extrabold text-teal">{stats.openRequests.toLocaleString()}</strong>
+                <p className="mt-1 text-sm text-mu">Cases needing follow-up</p>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

@@ -31,14 +31,14 @@ function CallbackInner() {
   const desc =
     state === "success" ? "Thank you. Your donation has been verified and recorded." :
     state === "failed" ? "Your payment was not completed. No successful donation was recorded." :
-    state === "pending" ? "We received your return from PayChangu. Verification is still pending; it will update automatically once confirmed." :
+    state === "pending" ? "We received your return from the payment process. Verification is still pending; it will update automatically once confirmed." :
     txRef ? "We could not verify your payment right now. Please check back shortly or contact support with your transaction reference." :
     "Missing transaction reference.";
 
   return (
     <div className="min-h-screen bg-bg text-ink flex items-center justify-center px-4">
       <div className="w-full max-w-xl rounded-3xl border border-ln bg-sf p-8 shadow-sm">
-        <p className="text-sm uppercase tracking-[0.2em] text-teal">PayChangu Payment</p>
+        <p className="text-sm uppercase tracking-[0.2em] text-teal">Secure Payment</p>
         <h1 className="mt-2 font-heading text-3xl font-extrabold">{title}</h1>
         <p className="mt-3 text-mu">{desc}</p>
         {txRef && <p className="mt-4 rounded-xl bg-mist px-4 py-3 text-sm"><span className="font-semibold">Transaction reference:</span> <span className="font-mono">{txRef}</span></p>}

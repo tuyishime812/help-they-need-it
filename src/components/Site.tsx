@@ -149,12 +149,12 @@ export default function Site() {
       }
       const PaychanguCheckout = (window as any).PaychanguCheckout;
       if (typeof PaychanguCheckout !== "function") {
-        throw new Error("PayChangu payment popup could not load. Please check your connection and try again.");
+        throw new Error("Secure payment window could not load. Please check your connection and try again.");
       }
       const nameParts = (donorName.trim() || "Anonymous Donor").split(/\s+/).filter(Boolean);
       const first_name = nameParts[0] || "Anonymous";
       const last_name = nameParts.slice(1).join(" ") || "Donor";
-      setDonationMsg("Opening PayChangu secure payment popup...");
+      setDonationMsg("Opening secure payment window...");
       PaychanguCheckout({
         public_key: json.public_key,
         tx_ref: json.tx_ref,
@@ -469,8 +469,8 @@ export default function Site() {
                   <input type="email" value={donorEmail} onChange={(e) => { setDonorEmail(e.target.value); setDonationMsg(''); }} placeholder="you@example.com" required className="w-full rounded-xl border-2 border-ln bg-bg px-4 py-3 font-normal text-ink" />
                 </label>
                 <p className="mt-3 min-h-[3.4em] font-medium" aria-live="polite">{donationImpact}</p>
-                <button type="button" onClick={onDonate} disabled={donationBusy} className="mt-2 rounded-full bg-sun px-7 py-3 font-semibold text-sk transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60">{donationBusy ? "Opening PayChangu..." : "Donate securely with PayChangu"}</button>
-                <p className="mt-2 text-sm text-mu">Pay with PayChangu inline popup (mobile money/cards). You’ll complete payment securely without leaving this site flow.</p>
+                <button type="button" onClick={onDonate} disabled={donationBusy} className="mt-2 rounded-full bg-sun px-7 py-3 font-semibold text-sk transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60">{donationBusy ? "Opening secure payment..." : "Donate securely"}</button>
+                <p className="mt-2 text-sm text-mu">Complete your payment securely (mobile money/cards) without leaving the site flow.</p>
                 {donationMsg && <p role="status" className="mt-4 rounded-xl border-l-4 border-teal bg-mist px-4 py-3">{donationMsg}</p>}
               </div>
               <div className="rounded-3xl bg-sf p-6 sm:p-8 shadow-sm">

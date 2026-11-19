@@ -9,7 +9,7 @@ export default function FAQPage() {
     ['Is my information kept private?', 'Yes. We only share details with partners when you agree, and only to arrange your support.'],
     ['How is my donation used?', 'Most goes directly to programs. We publish an annual report showing every category of spending.'],
     ['Can I volunteer from home?', 'Yes. Phone calls, online tutoring and translation can all be done remotely.'],
-    ['How are donations tracked?', 'Donations made through the site are processed via PayChangu and tracked by program branch and status in our operations dashboard (subject to server-side verification).'],
+    ['How are donations tracked?', 'Donations made through the site are processed securely online and tracked by program branch and status in our operations dashboard (subject to server-side verification).'],
   ];
   return (
     <>

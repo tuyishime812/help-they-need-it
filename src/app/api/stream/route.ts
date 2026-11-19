@@ -1,4 +1,4 @@
-import { computeStats, getStore, subscribe } from "@/lib/store";
+import { computeStats, subscribe } from "@/lib/store";
 
 export async function GET() {
   const encoder = new TextEncoder();
@@ -11,16 +11,16 @@ export async function GET() {
         try {
           controller.enqueue(encoder.encode(`event: ${event}\n`));
           controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
-        } catch {
-          // client disconnected
-        }
+        } catch {}
       };
 
-      send("stats", computeStats(getStore()));
-      cleanup = subscribe((evt) => {
-        send(evt.type, { at: Date.now() });
-        send("stats", computeStats(getStore()));
-      });
+      (async () => {
+        try { send("stats", await computeStats()); } catch {}
+        cleanup = subscribe(async (evt) => {
+          send(evt.type, { at: Date.now() });
+          try { send("stats", await computeStats()); } catch {}
+        });
+      })();
       ping = setInterval(() => send("ping", { at: Date.now() }), 15000);
     },
     cancel() {

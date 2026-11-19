@@ -1,10 +1,13 @@
 import { NextResponse } from "next/server";
-import { emit, getStore, uid, updateRequestStatus } from "@/lib/store";
+import { createRequest, emit, listRequests, updateRequestStatus } from "@/lib/store";
 
 export async function GET() {
-  const store = getStore();
-  const requests = [...store.requests].sort((a, b) => +new Date(b.createdAt) - +new Date(a.createdAt));
-  return NextResponse.json({ requests });
+  try {
+    const requests = await listRequests(200);
+    return NextResponse.json({ requests });
+  } catch (e: any) {
+    return NextResponse.json({ error: e?.message || "Failed to load requests" }, { status: 500 });
+  }
 }
 
 export async function POST(req: Request) {
@@ -17,12 +20,11 @@ export async function POST(req: Request) {
     if (!name || !contact) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
-    const item = { id: uid("r"), name, contact, category, message, createdAt: new Date().toISOString(), status: "new" as const };
-    getStore().requests.push(item);
+    const item = await createRequest({ name, contact, category, message });
     emit({ type: "request" });
     return NextResponse.json({ ok: true, request: item }, { status: 201 });
-  } catch {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  } catch (e: any) {
+    return NextResponse.json({ error: e?.message || "Invalid request" }, { status: 400 });
   }
 }
 
@@ -34,11 +36,11 @@ export async function PATCH(req: Request) {
     if (!id || !["new", "in_review", "resolved"].includes(status)) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
-    const updated = updateRequestStatus(id, status);
+    const updated = await updateRequestStatus(id, status);
     if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });
     emit({ type: "request_update" });
     return NextResponse.json({ ok: true, request: updated });
-  } catch {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  } catch (e: any) {
+    return NextResponse.json({ error: e?.message || "Invalid request" }, { status: 400 });
   }
 }

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Branch, emit, getStore, uid } from "@/lib/store";
+import { Branch, createDonation, emit } from "@/lib/store";
 
 const branches: Branch[] = ["Older people", "Students", "Refugees", "Families"];
 const currencies = ["MWK", "USD"] as const;
@@ -31,30 +31,11 @@ export async function POST(req: Request) {
     const callback_url = `${origin}/payment/callback`;
     const return_url = `${origin}/payment/return`;
 
-    const pending = {
-      id: uid("d"),
-      amount,
-      currency,
-      frequency,
-      branch,
-      donorName,
-      email,
-      txRef,
-      paymentStatus: "pending" as "pending" | "successful" | "failed",
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    };
-    getStore().donations.push(pending);
+    await createDonation({ amount, currency, frequency, branch, donorName, email, txRef, paymentStatus: "pending" });
     emit({ type: "donation_pending" });
 
-    return NextResponse.json({
-      ok: true,
-      tx_ref: txRef,
-      public_key: publicKey,
-      callback_url,
-      return_url,
-    });
-  } catch {
-    return NextResponse.json({ error: "Could not prepare payment." }, { status: 500 });
+    return NextResponse.json({ ok: true, tx_ref: txRef, public_key: publicKey, callback_url, return_url });
+  } catch (e: any) {
+    return NextResponse.json({ error: e?.message || "Could not prepare payment." }, { status: 500 });
   }
 }
