@@ -31,7 +31,7 @@ create table if not exists public.requests (
 create index if not exists requests_created_at_idx on public.requests (created_at desc);
 create index if not exists requests_status_idx on public.requests (status);
 
--- Optional: updated_at trigger for donations
+-- Keep updated_at current for donations
 create or replace function public.set_updated_at()
 returns trigger as $$
 begin
@@ -44,3 +44,8 @@ drop trigger if exists set_donations_updated_at on public.donations;
 create trigger set_donations_updated_at
 before update on public.donations
 for each row execute function public.set_updated_at();
+
+-- Security hardening: enable RLS (server-side service role bypasses RLS).
+-- Do not add permissive anon/auth policies unless you intentionally expose data to clients.
+alter table public.donations enable row level security;
+alter table public.requests enable row level security;
